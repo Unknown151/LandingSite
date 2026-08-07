@@ -9,59 +9,40 @@
  */
 
 const SITE = {
-  name: "Your Name",
-  handle: "@yourhandle",
-  tagline: "Everything I build, in one place.",
+  name: "Army Builders",
+  handle: "rsvn.dk",
+  tagline: "List builders and tools I've made for the 41st millennium.",
 
   // Shown in the circle. Either an image URL, or leave empty to
   // fall back to the initials generated from `name`.
   avatar: "",
 
   // Accent colour used for highlights and focus rings.
-  accent: "#6366f1",
+  accent: "#b91c1c",
 
   links: [
     {
-      icon: "🌐",
-      title: "Main Website",
-      description: "The home base — about, work, and contact.",
-      url: "https://example.com",
+      icon: "👹",
+      title: "Chaos Daemons",
+      description: "Army builder for Chaos Daemons.",
+      url: "https://cd.rsvn.dk",
     },
     {
-      icon: "📝",
-      title: "Blog",
-      description: "Notes on things I'm figuring out.",
-      url: "https://blog.example.com",
-      badge: "New",
+      icon: "⛏️",
+      title: "Leagues of Votann",
+      description: "Army builder for the Leagues of Votann.",
+      url: "https://votann.rsvn.dk",
     },
     {
-      icon: "🛠️",
-      title: "Projects",
-      description: "Side projects and experiments.",
-      url: "https://projects.example.com",
-    },
-    {
-      icon: "🐙",
-      title: "GitHub",
-      description: "Source code and open source work.",
-      url: "https://github.com/Unknown151",
-    },
-    {
-      icon: "💼",
-      title: "LinkedIn",
-      description: "Professional background and history.",
-      url: "https://linkedin.com/in/yourhandle",
-    },
-    {
-      icon: "✉️",
-      title: "Email Me",
-      description: "The fastest way to reach me directly.",
-      url: "mailto:you@example.com",
+      icon: "🧮",
+      title: "Point Tracker",
+      description: "Keep track of points while you build a list.",
+      url: "https://points.rsvn.dk",
     },
   ],
 
   // Small text at the bottom. Set to "" to hide.
-  footer: "Built with a static page and no tracking.",
+  footer: "Fan-made tools. Not affiliated with Games Workshop.",
 };
 
 /* ============================================================
@@ -93,7 +74,7 @@ function renderHeader() {
   }
 
   document.getElementById("name").textContent = SITE.name;
-  document.title = SITE.name + " · Links";
+  document.title = SITE.name;
 
   const handle = document.getElementById("handle");
   if (SITE.handle) handle.textContent = SITE.handle;
