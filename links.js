@@ -11,10 +11,12 @@
 const SITE = {
   name: "Army Builders",
   handle: "rsvn.dk",
-  tagline: "List builders and tools I've made for the 41st millennium.",
 
-  // Shown in the circle. Either an image URL, or leave empty to
-  // fall back to the initials generated from `name`.
+  // Optional line under the handle. "" hides it.
+  tagline: "",
+
+  // "" hides the circle entirely. "initials" draws the initials taken
+  // from `name`. Anything else is treated as an image URL.
   avatar: "",
 
   // Accent colour used for highlights and focus rings.
@@ -64,13 +66,15 @@ function renderHeader() {
   document.documentElement.style.setProperty("--accent", SITE.accent);
 
   const avatar = document.getElementById("avatar");
-  if (SITE.avatar) {
+  if (!SITE.avatar) {
+    avatar.remove();
+  } else if (SITE.avatar === "initials") {
+    avatar.textContent = initials(SITE.name);
+  } else {
     const img = document.createElement("img");
     img.src = SITE.avatar;
     img.alt = SITE.name;
     avatar.appendChild(img);
-  } else {
-    avatar.textContent = initials(SITE.name);
   }
 
   document.getElementById("name").textContent = SITE.name;
@@ -80,7 +84,9 @@ function renderHeader() {
   if (SITE.handle) handle.textContent = SITE.handle;
   else handle.remove();
 
-  document.getElementById("tagline").textContent = SITE.tagline;
+  const tagline = document.getElementById("tagline");
+  if (SITE.tagline) tagline.textContent = SITE.tagline;
+  else tagline.remove();
 
   const footer = document.getElementById("footer");
   if (SITE.footer) footer.textContent = SITE.footer;

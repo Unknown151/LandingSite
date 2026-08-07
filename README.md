@@ -12,23 +12,23 @@ Everything you'd want to change lives at the top of **`links.js`**:
 
 ```js
 const SITE = {
-  name: "Your Name",
-  handle: "@yourhandle",
-  tagline: "Everything I build, in one place.",
-  avatar: "",          // image URL, or "" to use your initials
-  accent: "#6366f1",   // one colour drives the whole palette
+  name: "Army Builders",
+  handle: "rsvn.dk",
+  tagline: "",         // optional line under the handle; "" hides it
+  avatar: "",          // "" hides it, "initials" draws them, else an image URL
+  accent: "#b91c1c",   // one colour drives the whole palette
 
   links: [
     {
-      icon: "🌐",                              // emoji, or an inline <svg>…</svg>
-      title: "Main Website",
-      description: "The home base.",           // optional
-      url: "https://example.com",
-      badge: "New",                            // optional
+      icon: "👹",                              // emoji, or an inline <svg>…</svg>
+      title: "Chaos Daemons",
+      description: "Army builder for Chaos Daemons.",   // optional
+      url: "https://cd.rsvn.dk",
+      badge: "Beta",                           // optional
     },
   ],
 
-  footer: "Built with a static page and no tracking.",
+  footer: "Fan-made tools. Not affiliated with Games Workshop.",
 };
 ```
 
