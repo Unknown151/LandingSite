@@ -36,6 +36,13 @@ const SITE = {
       url: "https://votann.rsvn.dk",
     },
     {
+      icon: "🪓",
+      title: "Orks",
+      description: "Army builder for Orks.",
+      url: "https://orks.rsvn.dk",
+      badge: "New",
+    },
+    {
       icon: "🧮",
       title: "Point Tracker",
       description: "Keep track of points while you build a list.",
