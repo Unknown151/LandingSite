@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Links</title>
+    <meta name="description" content="All of my sites in one place." />
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- Social preview -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Links" />
+    <meta property="og:description" content="All of my sites in one place." />
+
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔗</text></svg>"
+    />
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Apply the saved theme before first paint so there is no flash. -->
+    <script>
+      (function () {
+        var t = localStorage.getItem("theme");
+        if (t) document.documentElement.setAttribute("data-theme", t);
+      })();
+    </script>
+  </head>
+
+  <body>
+    <div class="glow" aria-hidden="true"></div>
+
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+      <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5" />
+        <path
+          d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"
+        />
+      </svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z" />
+      </svg>
+    </button>
+
+    <main class="card">
+      <header class="profile">
+        <div id="avatar" class="avatar"></div>
+        <h1 id="name">Your Name</h1>
+        <p id="handle" class="handle"></p>
+        <p id="tagline" class="tagline"></p>
+      </header>
+
+      <nav id="links" class="links" aria-label="My sites"></nav>
+
+      <footer id="footer" class="footer"></footer>
+    </main>
+
+    <script src="links.js"></script>
+  </body>
+</html>

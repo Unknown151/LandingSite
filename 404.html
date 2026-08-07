@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Not found</title>
+    <meta name="color-scheme" content="light dark" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔗</text></svg>"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script>
+      (function () {
+        var t = localStorage.getItem("theme");
+        if (t) document.documentElement.setAttribute("data-theme", t);
+      })();
+    </script>
+  </head>
+
+  <body>
+    <div class="glow" aria-hidden="true"></div>
+
+    <main class="card">
+      <div class="profile">
+        <div class="avatar">404</div>
+        <h1>Nothing here</h1>
+        <p class="tagline">That page doesn't exist — but the links do.</p>
+      </div>
+
+      <nav class="links">
+        <a class="link" href="/" style="--i: 0">
+          <span class="link-icon" aria-hidden="true">↩</span>
+          <span class="link-text">
+            <span class="link-title">Back to the links</span>
+          </span>
+          <span class="link-arrow" aria-hidden="true">→</span>
+        </a>
+      </nav>
+    </main>
+  </body>
+</html>

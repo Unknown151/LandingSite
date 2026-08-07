@@ -1,0 +1,16 @@
+# Cloudflare Pages reads this file to set response headers.
+# https://developers.cloudflare.com/pages/configuration/headers/
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()
+
+# Static assets are safe to cache hard; index.html is not, so that
+# edits to your links show up immediately after a deploy.
+/styles.css
+  Cache-Control: public, max-age=3600
+
+/links.js
+  Cache-Control: public, max-age=3600
