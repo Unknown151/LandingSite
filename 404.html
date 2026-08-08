@@ -3,38 +3,54 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Not found</title>
-    <meta name="color-scheme" content="light dark" />
+    <title>Signal lost</title>
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#05090b" />
     <link
       rel="icon"
       href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚔️</text></svg>"
     />
     <link rel="stylesheet" href="styles.css" />
-    <script>
-      (function () {
-        var t = localStorage.getItem("theme");
-        if (t) document.documentElement.setAttribute("data-theme", t);
-      })();
-    </script>
   </head>
 
   <body>
-    <div class="glow" aria-hidden="true"></div>
+    <div class="fx" aria-hidden="true">
+      <div class="fx-glow"></div>
+      <div class="fx-grid"></div>
+      <div class="fx-scanlines"></div>
+      <div class="fx-sweep"></div>
+      <div class="fx-noise"></div>
+      <div class="fx-vignette"></div>
+    </div>
 
-    <main class="card">
-      <div class="profile">
-        <div class="avatar">404</div>
-        <h1>Nothing here</h1>
+    <main class="hud">
+      <header class="masthead">
+        <p class="eyebrow">
+          <span class="eyebrow-mark"></span><span>Error 404</span>
+        </p>
+
+        <h1 class="title">
+          <span class="title-lead">Signal</span
+          ><span class="title-rest" data-text="Lost">Lost</span>
+        </h1>
+
+        <div class="rule">
+          <span class="rule-line"></span>
+          <span class="handle">rsvn.dk</span>
+          <span class="rule-line"></span>
+        </div>
+
         <p class="tagline">That page doesn't exist — but the builders do.</p>
-      </div>
+      </header>
 
       <nav class="links">
         <a class="link" href="/" style="--i: 0">
-          <span class="link-icon" aria-hidden="true">↩</span>
-          <span class="link-text">
-            <span class="link-title">Back to the army builders</span>
+          <span class="link-index" aria-hidden="true">00</span>
+          <span class="link-body">
+            <span class="link-title">Return to index</span>
+            <span class="link-desc">Back to the army builders.</span>
           </span>
-          <span class="link-arrow" aria-hidden="true">→</span>
+          <span class="link-go" aria-hidden="true">▸</span>
         </a>
       </nav>
     </main>

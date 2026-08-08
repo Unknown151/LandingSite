@@ -3,47 +3,49 @@
  *  EDIT THIS FILE — it is the only one you need to touch.
  * ============================================================
  *
- *  icon:  any emoji, or an inline <svg>…</svg> string.
+ *  icon:  leave empty to get the index number (01, 02, …), which is
+ *         the intended look. An inline <svg>…</svg> is drawn in the
+ *         accent colour. An emoji works too, but sits oddly against
+ *         the rest of the palette.
  *  url:   full URL including https://
- *  badge: optional small label shown on the right (or omit)
+ *  badge: optional small tag on the right (or omit)
  */
 
 const SITE = {
   name: "Army Builders",
   handle: "rsvn.dk",
 
-  // Optional line under the handle. "" hides it.
+  // Small label above the title.
+  eyebrow: "Warhammer 40,000",
+
+  // Optional line under the rule. "" hides it.
   tagline: "",
 
-  // "" hides the circle entirely. "initials" draws the initials taken
-  // from `name`. Anything else is treated as an image URL.
-  avatar: "",
-
-  // Accent colour used for highlights and focus rings.
-  accent: "#b91c1c",
+  // Accent colour. Drives every highlight, glow and rule on the page.
+  accent: "#4fe3b0",
 
   links: [
     {
-      icon: "👹",
+      icon: "",
       title: "Chaos Daemons",
       description: "Army builder for Chaos Daemons.",
       url: "https://cd.rsvn.dk",
     },
     {
-      icon: "⛏️",
+      icon: "",
       title: "Leagues of Votann",
       description: "Army builder for the Leagues of Votann.",
       url: "https://votann.rsvn.dk",
     },
     {
-      icon: "🪓",
+      icon: "",
       title: "Orks",
       description: "Army builder for Orks.",
       url: "https://orks.rsvn.dk",
       badge: "New",
     },
     {
-      icon: "🧮",
+      icon: "",
       title: "Point Tracker",
       description: "Keep track of points while you build a list.",
       url: "https://points.rsvn.dk",
@@ -60,36 +62,36 @@ const SITE = {
 
 const isSvg = (s) => typeof s === "string" && s.trim().startsWith("<svg");
 
-function initials(name) {
-  return name
-    .split(/\s+/)
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((w) => w[0].toUpperCase())
-    .join("");
+/* "CD.RSVN.DK" for a web address; nothing for mailto:/tel:. */
+function hostLabel(url) {
+  try {
+    const { protocol, hostname } = new URL(url);
+    return /^https?:$/.test(protocol) ? hostname.replace(/^www\./, "") : "";
+  } catch {
+    return "";
+  }
 }
 
-function renderHeader() {
+function renderMasthead() {
   document.documentElement.style.setProperty("--accent", SITE.accent);
-
-  const avatar = document.getElementById("avatar");
-  if (!SITE.avatar) {
-    avatar.remove();
-  } else if (SITE.avatar === "initials") {
-    avatar.textContent = initials(SITE.name);
-  } else {
-    const img = document.createElement("img");
-    img.src = SITE.avatar;
-    img.alt = SITE.name;
-    avatar.appendChild(img);
-  }
-
-  document.getElementById("name").textContent = SITE.name;
   document.title = SITE.name;
+
+  const eyebrow = document.getElementById("eyebrow");
+  if (SITE.eyebrow) eyebrow.textContent = SITE.eyebrow;
+  else eyebrow.closest(".eyebrow").remove();
+
+  // The first word goes in the lit panel, the remainder alongside it.
+  const [lead, ...rest] = SITE.name.split(/\s+/).filter(Boolean);
+  const tail = rest.join(" ");
+  document.getElementById("title-lead").textContent = lead;
+
+  const titleRest = document.getElementById("title-rest");
+  titleRest.textContent = tail;
+  titleRest.dataset.text = tail; // the glitch layer copies this
 
   const handle = document.getElementById("handle");
   if (SITE.handle) handle.textContent = SITE.handle;
-  else handle.remove();
+  else handle.closest(".rule").remove();
 
   const tagline = document.getElementById("tagline");
   if (SITE.tagline) tagline.textContent = SITE.tagline;
@@ -115,28 +117,37 @@ function renderLinks() {
       a.rel = "noopener noreferrer";
     }
 
-    const icon = document.createElement("span");
-    icon.className = "link-icon";
-    icon.setAttribute("aria-hidden", "true");
-    if (isSvg(link.icon)) icon.innerHTML = link.icon;
-    else icon.textContent = link.icon || "🔗";
+    // Index number by default; an icon only if one was given.
+    let marker;
+    if (link.icon) {
+      marker = document.createElement("span");
+      marker.className = "link-icon";
+      marker.setAttribute("aria-hidden", "true");
+      if (isSvg(link.icon)) marker.innerHTML = link.icon;
+      else marker.textContent = link.icon;
+    } else {
+      marker = document.createElement("span");
+      marker.className = "link-index";
+      marker.setAttribute("aria-hidden", "true");
+      marker.textContent = String(i + 1).padStart(2, "0");
+    }
 
-    const text = document.createElement("span");
-    text.className = "link-text";
+    const body = document.createElement("span");
+    body.className = "link-body";
 
     const title = document.createElement("span");
     title.className = "link-title";
     title.textContent = link.title;
-    text.appendChild(title);
+    body.appendChild(title);
 
     if (link.description) {
       const desc = document.createElement("span");
       desc.className = "link-desc";
       desc.textContent = link.description;
-      text.appendChild(desc);
+      body.appendChild(desc);
     }
 
-    a.append(icon, text);
+    a.append(marker, body);
 
     if (link.badge) {
       const badge = document.createElement("span");
@@ -145,32 +156,24 @@ function renderLinks() {
       a.appendChild(badge);
     }
 
-    const arrow = document.createElement("span");
-    arrow.className = "link-arrow";
-    arrow.setAttribute("aria-hidden", "true");
-    arrow.textContent = "→";
-    a.appendChild(arrow);
+    const host = hostLabel(link.url);
+    if (host) {
+      const hostEl = document.createElement("span");
+      hostEl.className = "link-host";
+      hostEl.setAttribute("aria-hidden", "true");
+      hostEl.textContent = host;
+      a.appendChild(hostEl);
+    }
+
+    const go = document.createElement("span");
+    go.className = "link-go";
+    go.setAttribute("aria-hidden", "true");
+    go.textContent = "▸";
+    a.appendChild(go);
 
     list.appendChild(a);
   });
 }
 
-/* Theme: remembers the choice, otherwise follows the OS setting. */
-function setupTheme() {
-  const stored = localStorage.getItem("theme");
-  if (stored) document.documentElement.setAttribute("data-theme", stored);
-
-  document.getElementById("theme-toggle").addEventListener("click", () => {
-    const prefersDark = matchMedia("(prefers-color-scheme: dark)").matches;
-    const current =
-      document.documentElement.getAttribute("data-theme") ||
-      (prefersDark ? "dark" : "light");
-    const next = current === "dark" ? "light" : "dark";
-    document.documentElement.setAttribute("data-theme", next);
-    localStorage.setItem("theme", next);
-  });
-}
-
-renderHeader();
+renderMasthead();
 renderLinks();
-setupTheme();
