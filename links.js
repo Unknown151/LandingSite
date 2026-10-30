@@ -16,7 +16,7 @@ const SITE = {
   handle: "rsvn.dk",
 
   // Small label above the title.
-  eyebrow: "Warhammer 40,000",
+  eyebrow: "Tabletop Wargames",
 
   // Optional line under the rule. "" hides it.
   tagline: "",
@@ -42,6 +42,12 @@ const SITE = {
       title: "Orks",
       description: "Army builder for Orks.",
       url: "https://orks.rsvn.dk",
+    },
+    {
+      icon: "",
+      title: "StarCraft: TMG",
+      description: "Game builder for StarCraft: TMG.",
+      url: "https://star.rsvn.dk",
       badge: "New",
     },
     {
@@ -53,7 +59,7 @@ const SITE = {
   ],
 
   // Small text at the bottom. Set to "" to hide.
-  footer: "Fan-made tools. Not affiliated with Games Workshop.",
+  footer: "Fan-made tools. Not affiliated with any rights holder.",
 };
 
 /* ============================================================

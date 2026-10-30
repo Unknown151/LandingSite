@@ -17,7 +17,7 @@ Everything you'd want to change lives at the top of **`links.js`**:
 const SITE = {
   name: "Army Builders",
   handle: "rsvn.dk",
-  eyebrow: "Warhammer 40,000",   // small label above the title
+  eyebrow: "Tabletop Wargames",  // small label above the title
   tagline: "",                   // optional line under the rule; "" hides it
   accent: "#4fe3b0",             // one colour drives every highlight and glow
 
@@ -31,7 +31,7 @@ const SITE = {
     },
   ],
 
-  footer: "Fan-made tools. Not affiliated with Games Workshop.",
+  footer: "Fan-made tools. Not affiliated with any rights holder.",
 };
 ```
 
